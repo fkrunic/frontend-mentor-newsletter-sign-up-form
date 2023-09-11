@@ -40,15 +40,55 @@ const inputStyling = (state: EmailState): Array<string> => {
 
   <!-- Success Page -->
   <div v-if="emailState.kind === 'valid'"
-    class="flex flex-col items-start justify-between min-h-screen mx-6">
+    class="
+      desktop:flex
+      desktop:flex-col
+      desktop:items-center
+      desktop:justify-center
+      desktop:min-h-screen
+      desktop:bg-dark-slate-gray
+      ">
 
     <!-- Card -->
-    <div>
+    <div class="
+      flex 
+      flex-col
+      items-start 
+      justify-between 
+      min-h-screen
+      mx-6
+
+      desktop:flex
+      desktop:flex-col
+      desktop:items-center
+      desktop:justify-center
+      desktop:gap-10
+      desktop:min-h-fit
+      desktop:w-[32rem]
+      desktop:h-[32rem]
+      desktop:p-16
+      desktop:rounded-[2rem]
+      desktop:bg-white
+      ">
 
       <!-- Top Content -->
-      <div class="flex flex-col gap-10 mt-36">
+      <div class="
+        flex 
+        flex-col 
+        gap-10 
+        mt-36
+        
+        desktop:mt-0
+        ">
         <img class="w-16" src="./assets/icon-success.svg">
-        <p class="text-[30pt] font-bold leading-[30pt] -mb-4">Thanks for subscribing!</p>
+        <p class="
+          text-[30pt] 
+          font-bold 
+          leading-[30pt] 
+          -mb-4
+          desktop:text-[40pt]
+          desktop:leading-[40pt]
+          ">Thanks for subscribing!</p>
         <p>
           A confirmation email has been sent to 
           <span class="font-bold">{{ emailInput }}</span>.
@@ -56,7 +96,6 @@ const inputStyling = (state: EmailState): Array<string> => {
           subscription.
         </p>      
       </div>
-    </div>
 
     <!-- Dismiss Button -->
     <p class="        
@@ -69,8 +108,11 @@ const inputStyling = (state: EmailState): Array<string> => {
       font-bold 
       text-white 
       bg-dark-slate-gray
+
+      desktop:mb-0
       "
-      >Dismiss Message</p>  
+      >Dismiss Message</p>        
+    </div>
   </div>
 
   <!-- Landing Page -->

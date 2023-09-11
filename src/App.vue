@@ -37,8 +37,41 @@ const inputStyling = (state: EmailState): Array<string> => {
 </script>
 
 <template>
-  <!-- Page Layout -->
-  <div class="flex flex-col justify-start items-center min-h-screen">
+
+  <!-- Success Page -->
+  <div v-if="emailState.kind === 'valid'"
+    class="flex flex-col items-start justify-between min-h-screen mx-6">
+
+    <!-- Top Content -->
+    <div class="flex flex-col gap-10 mt-36">
+      <img class="w-16" src="./assets/icon-success.svg">
+      <p class="text-[30pt] font-bold leading-[30pt] -mb-4">Thanks for subscribing!</p>
+      <p>
+        A confirmation email has been sent to 
+        <span class="font-bold">{{ emailInput }}</span>.
+        Please open it and click the button inside to confirm your 
+        subscription.
+      </p>      
+    </div>
+
+    <!-- Dismiss Button -->
+    <p class="        
+      w-full 
+      p-4
+      mb-10 
+      
+      text-center 
+      rounded-lg 
+      font-bold 
+      text-white 
+      bg-dark-slate-gray
+      "
+      >Dismiss Message</p>  
+  </div>
+
+  <!-- Landing Page -->
+  <div v-if="emailState.kind !== 'valid'"
+    class="flex flex-col justify-start items-center min-h-screen">
     <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
 
     <!-- Content -->

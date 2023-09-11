@@ -93,13 +93,25 @@ const inputStyling = (state: EmailState): Array<string> => {
       items-center
       
       desktop:flex-row-reverse
+      desktop:gap-10
+      desktop:p-6
+      desktop:rounded-[2rem]
       desktop:bg-white
       ">
-      <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
+      <img class="desktop:hidden" src="./assets/illustration-sign-up-mobile.svg" alt="banner">
+      <img class="hidden desktop:block" src="./assets/illustration-sign-up-desktop.svg" alt="banner">
 
       <!-- Content -->
-      <div class="flex flex-col gap-6 m-6">
-        <p class="text-[30pt] font-bold -mb-2">Stay updated!</p>
+      <div class="
+        flex 
+        flex-col 
+        gap-6 
+        m-6
+        
+        desktop:p-2
+        desktop:w-[24rem]
+        ">
+        <p class="text-[30pt] font-bold -mb-2 text-dark-slate-gray desktop:text-[40pt]">Stay updated!</p>
         <p>Join 60,000+ product managers receiving monthly updates on:</p>
 
         <!-- List -->

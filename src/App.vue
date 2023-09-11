@@ -44,7 +44,7 @@ const inputStyling = (state: EmailState): Array<string> => {
 
     <!-- Card -->
     <div>
-      
+
       <!-- Top Content -->
       <div class="flex flex-col gap-10 mt-36">
         <img class="w-16" src="./assets/icon-success.svg">
@@ -75,10 +75,10 @@ const inputStyling = (state: EmailState): Array<string> => {
 
   <!-- Landing Page -->
   <div v-if="emailState.kind !== 'valid'"
-    class="flex flex-col justify-start items-center min-h-screen">
+    class="flex flex-col justify-center items-center min-h-screen">
 
     <!-- Card -->
-    <div>
+    <div class="flex flex-col justify-start items-center">
       <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
 
       <!-- Content -->

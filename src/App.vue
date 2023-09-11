@@ -1,14 +1,42 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import BulletPoint from './components/BulletPoint.vue';
+import * as EmailValidator from 'email-validator'
+
+type EmailState
+  = { kind: 'not-entered' }
+  | { kind: 'valid' }
+  | { kind: 'invalid' }
 
 onMounted(() => {
   document.body.className = 'font-roboto'
 })
+
+const emailState = ref({ kind: 'not-entered' } as EmailState)
+const emailInput = ref('')
+
+const onInput = (event: Event) => {
+  const input = (event.target as HTMLInputElement).value
+  emailInput.value = input
+  console.log(input)
+}
+
+const onSubmit = () => {
+  const state = EmailValidator.validate(emailInput.value)
+    ? { kind: 'valid' }
+    : { kind: 'invalid' }
+  emailState.value = state as EmailState
+}
+
+const inputStyling = (state: EmailState): Array<string> => {
+  return state.kind === 'invalid'
+    ? ['bg-tomato/10', 'border-tomato', 'text-tomato']
+    : ['border-grey/50']
+}
+
 </script>
 
 <template>
-
   <!-- Page Layout -->
   <div class="flex flex-col justify-start items-center min-h-screen">
     <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
@@ -20,24 +48,21 @@ onMounted(() => {
 
       <!-- List -->
       <div class="flex flex-col gap-2">
-        <BulletPoint 
-        :content="'Product discovery and building what matters'"
-        ></BulletPoint>
-        <BulletPoint 
-        :content="'Measuring to ensure updates are a success'"
-        ></BulletPoint>        
-        <BulletPoint 
-        :content="'And much more!'"
-        ></BulletPoint>  
-      </div>              
+        <BulletPoint :content="'Product discovery and building what matters'"></BulletPoint>
+        <BulletPoint :content="'Measuring to ensure updates are a success'"></BulletPoint>
+        <BulletPoint :content="'And much more!'"></BulletPoint>
+      </div>
 
       <!-- Email Input -->
-      <div class="flex flex-col mt-2 gap-2">
+      <div class="relative flex flex-col mt-2 gap-2">
+        <p v-if="emailState.kind === 'invalid'"
+          class="absolute right-0 text-xs text-tomato font-bold"> Valid email required</p>
         <p class="text-xs font-bold">Email address</p>
         <input 
-          class="w-full p-4 outline-none rounded-lg border-solid border-[1px] border-grey/50"
-          type="text" 
-          placeholder="email@company.com">
+          class="w-full p-4 outline-none rounded-lg border-solid border-[1px]" 
+          :class="inputStyling(emailState)"
+          type="text"
+          placeholder="email@company.com" @input="onInput">
       </div>
 
       <!-- Subscribe Button -->
@@ -53,7 +78,9 @@ onMounted(() => {
         
         hover:bg-gradient-to-l from-tomato to-orange
         hover:cursor-pointer
-        ">Subscribe to monthly newsletter</p>
+        "
+        @click="onSubmit"
+        >Subscribe to monthly newsletter</p>
     </div>
   </div>
 </template>

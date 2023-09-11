@@ -41,7 +41,19 @@ onMounted(() => {
       </div>
 
       <!-- Subscribe Button -->
-      <p class="w-full p-4 text-center rounded-lg font-bold text-white bg-dark-slate-gray">Subscribe to monthly newsletter</p>
+      <p class="
+        w-full 
+        p-4 
+        
+        text-center 
+        rounded-lg 
+        font-bold 
+        text-white 
+        bg-dark-slate-gray
+        
+        hover:bg-gradient-to-l from-tomato to-orange
+        hover:cursor-pointer
+        ">Subscribe to monthly newsletter</p>
     </div>
   </div>
 </template>

@@ -75,10 +75,26 @@ const inputStyling = (state: EmailState): Array<string> => {
 
   <!-- Landing Page -->
   <div v-if="emailState.kind !== 'valid'"
-    class="flex flex-col justify-center items-center min-h-screen">
+    class="
+      flex 
+      flex-col 
+      justify-center 
+      items-center 
+      min-h-screen
+      
+      desktop:bg-dark-slate-gray
+      ">
 
     <!-- Card -->
-    <div class="flex flex-col justify-start items-center">
+    <div class="
+      flex 
+      flex-col 
+      justify-start 
+      items-center
+      
+      desktop:flex-row-reverse
+      desktop:bg-white
+      ">
       <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
 
       <!-- Content -->

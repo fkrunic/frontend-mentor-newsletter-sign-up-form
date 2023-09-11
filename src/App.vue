@@ -42,16 +42,20 @@ const inputStyling = (state: EmailState): Array<string> => {
   <div v-if="emailState.kind === 'valid'"
     class="flex flex-col items-start justify-between min-h-screen mx-6">
 
-    <!-- Top Content -->
-    <div class="flex flex-col gap-10 mt-36">
-      <img class="w-16" src="./assets/icon-success.svg">
-      <p class="text-[30pt] font-bold leading-[30pt] -mb-4">Thanks for subscribing!</p>
-      <p>
-        A confirmation email has been sent to 
-        <span class="font-bold">{{ emailInput }}</span>.
-        Please open it and click the button inside to confirm your 
-        subscription.
-      </p>      
+    <!-- Card -->
+    <div>
+      
+      <!-- Top Content -->
+      <div class="flex flex-col gap-10 mt-36">
+        <img class="w-16" src="./assets/icon-success.svg">
+        <p class="text-[30pt] font-bold leading-[30pt] -mb-4">Thanks for subscribing!</p>
+        <p>
+          A confirmation email has been sent to 
+          <span class="font-bold">{{ emailInput }}</span>.
+          Please open it and click the button inside to confirm your 
+          subscription.
+        </p>      
+      </div>
     </div>
 
     <!-- Dismiss Button -->
@@ -72,48 +76,52 @@ const inputStyling = (state: EmailState): Array<string> => {
   <!-- Landing Page -->
   <div v-if="emailState.kind !== 'valid'"
     class="flex flex-col justify-start items-center min-h-screen">
-    <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
 
-    <!-- Content -->
-    <div class="flex flex-col gap-6 m-6">
-      <p class="text-[30pt] font-bold -mb-2">Stay updated!</p>
-      <p>Join 60,000+ product managers receiving monthly updates on:</p>
+    <!-- Card -->
+    <div>
+      <img src="./assets/illustration-sign-up-mobile.svg" alt="banner">
 
-      <!-- List -->
-      <div class="flex flex-col gap-2">
-        <BulletPoint :content="'Product discovery and building what matters'"></BulletPoint>
-        <BulletPoint :content="'Measuring to ensure updates are a success'"></BulletPoint>
-        <BulletPoint :content="'And much more!'"></BulletPoint>
+      <!-- Content -->
+      <div class="flex flex-col gap-6 m-6">
+        <p class="text-[30pt] font-bold -mb-2">Stay updated!</p>
+        <p>Join 60,000+ product managers receiving monthly updates on:</p>
+
+        <!-- List -->
+        <div class="flex flex-col gap-2">
+          <BulletPoint :content="'Product discovery and building what matters'"></BulletPoint>
+          <BulletPoint :content="'Measuring to ensure updates are a success'"></BulletPoint>
+          <BulletPoint :content="'And much more!'"></BulletPoint>
+        </div>
+
+        <!-- Email Input -->
+        <div class="relative flex flex-col mt-2 gap-2">
+          <p v-if="emailState.kind === 'invalid'"
+            class="absolute right-0 text-xs text-tomato font-bold"> Valid email required</p>
+          <p class="text-xs font-bold">Email address</p>
+          <input 
+            class="w-full p-4 outline-none rounded-lg border-solid border-[1px]" 
+            :class="inputStyling(emailState)"
+            type="text"
+            placeholder="email@company.com" @input="onInput">
+        </div>
+
+        <!-- Subscribe Button -->
+        <p class="
+          w-full 
+          p-4 
+          
+          text-center 
+          rounded-lg 
+          font-bold 
+          text-white 
+          bg-dark-slate-gray
+          
+          hover:bg-gradient-to-l from-tomato to-orange
+          hover:cursor-pointer
+          "
+          @click="onSubmit"
+          >Subscribe to monthly newsletter</p>
       </div>
-
-      <!-- Email Input -->
-      <div class="relative flex flex-col mt-2 gap-2">
-        <p v-if="emailState.kind === 'invalid'"
-          class="absolute right-0 text-xs text-tomato font-bold"> Valid email required</p>
-        <p class="text-xs font-bold">Email address</p>
-        <input 
-          class="w-full p-4 outline-none rounded-lg border-solid border-[1px]" 
-          :class="inputStyling(emailState)"
-          type="text"
-          placeholder="email@company.com" @input="onInput">
-      </div>
-
-      <!-- Subscribe Button -->
-      <p class="
-        w-full 
-        p-4 
-        
-        text-center 
-        rounded-lg 
-        font-bold 
-        text-white 
-        bg-dark-slate-gray
-        
-        hover:bg-gradient-to-l from-tomato to-orange
-        hover:cursor-pointer
-        "
-        @click="onSubmit"
-        >Subscribe to monthly newsletter</p>
     </div>
   </div>
 </template>
